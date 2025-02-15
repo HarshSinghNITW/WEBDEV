@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        input {
+            padding: 10px;
+            width: 80%;
+            margin-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        p {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+    <script>
+        const inventory = {
+            "Laptop": 10,
+            "Phone": 5,
+            "Headphones": 15,
+            "Mouse": 8,
+            "Keyboard": 12
+        };
+
+        function checkInventory() {
+            let input = document.getElementById("itemInput").value;
+            let result = document.getElementById("result");
+            if (input in inventory) {
+                result.textContent = Available: ${inventory[input]} items;
+                result.style.color = "green";
+            } else {
+                result.textContent = "Item not available";
+                result.style.color = "red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Inventory Checker</h2>
+        <input type="text" id="itemInput" oninput="checkInventory()" placeholder="Enter item name...">
+        <p id="result"></p>
+    </div>
+</body>
+</html>

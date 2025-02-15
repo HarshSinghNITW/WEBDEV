@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Booking - Jaipur</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffebee;
+        }
+        header {
+            background-color: #e91e63;
+            color: white;
+            text-align: center;
+            padding: 1em;
+        }
+        nav {
+            background-color: #c2185b;
+            padding: 0.5em;
+        }
+        nav a {
+            color: white; 
+          text-decoration:none; 
+          padding:.5em 1em; 
+          display:inline-block; 
+          margin-right:.5em
+          }
+          .content { 
+              padding:.5em; 
+              max-width :500px; 
+              margin:auto
+          }
+          form { 
+              display:flex; 
+              flex-direction :column
+          }
+          label,input,select { 
+              display:block; 
+              margin-bottom:.75em; 
+              width :100%
+          }
+          input[type=submit] { 
+              background-color:#e91e63; 
+              color:white; 
+              border:none; 
+              padding:.5em; 
+              cursor:pointer
+          }
+
+      </style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Hotel Booking</h1>
+
+</header>
+
+<nav>
+
+<a href = "index.html">Home</a>
+
+<a href = "heritage.html">Heritage</a>
+
+<a href = "booking.html">Hotel Booking</a>
+
+<a href = "gallery.html">Gallery</a>
+
+</nav>
+
+<div class = "content">
+
+<form>
+
+<label for = "name">Full Name:</label>
+
+<input type = "text" id = "name" name = "name" required>
+
+<label for = "email">Email:</label>
+
+<input type = "email" id = "email" name = "email" required>
+
+<label for = "phone">Phone Number:</label>
+
+<input type = "tel" id = "phone" name = "phone" required>
+
+<label for = "check-in">Check-in Date:</label>
+
+<input type = "date" id = "check-in" name = "check-in" required>
+
+<label for = "check-out">Check-out Date:</label>
+
+<input type = "date" id = "check-out" name = "check-out" required>
+
+<label for = "guests">Number of Guests:</label>
+
+<input type = "number" id = "guests" name = "guests" min = "1" required>
+
+<label for = "room-type">Room Type:</label>
+
+<select id = "room-type" name = "room-type" required>
+
+<option value="">Select a room type</option>
+
+<option value ="single">Single</option>
+
+<option value ="double">Double</option>
+
+<option value ="suite">Suite</option>
+
+</select>
+
+<input type ="submit"value ="Book Now">
+
+</form>
+
+</div>
+
+
+</body>
+
+
