@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NIT Warangal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+        }
+
+        /* Header styles */
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem 3rem;
+            background: linear-gradient(135deg, #fff 0%, #f0f4f8 100%);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            width: 90px;
+            height: 90px;
+            margin-right: 2rem;
+            border-radius: 50%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .institute-name {
+            color: #003876;
+            font-size: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* Navigation styles */
+        .navbar {
+            background: linear-gradient(90deg, #003876 0%, #005bb5 100%);
+            padding: 1.2rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Announcements ticker */
+        .announcements {
+            background: linear-gradient(90deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 0.8rem;
+            overflow: hidden;
+            border-top: 3px solid #003876;
+            border-bottom: 3px solid #003876;
+        }
+
+        .ticker {
+            white-space: nowrap;
+            animation: ticker 30s linear infinite;
+            color: #003876;
+            font-weight: 500;
+        }
+
+        @keyframes ticker {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Slider styles */
+        .slider {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin: 2rem 0;
+        }
+
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out;
+        }
+
+        .slide.active {
+            opacity: 1;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .slider-nav button {
+            background: rgba(0,0,0,0.6);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .slider-nav button:hover {
+            background: rgba(0,0,0,0.8);
+            transform: scale(1.1);
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.6);
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* News & Events styles with animations */
+        .news-events {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .news-section, .events-section {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .section-title {
+            color: #003876;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.8rem;
+            border-bottom: 3px solid #003876;
+            font-size: 1.8rem;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 1;
+        }
+
+        .news-list li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            animation: slideUpDown 10s linear infinite;
+            opacity: 0;
+        }
+
+        .events-list li {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            border-bottom: 1px solid #eee;
+            position: relative;
+            animation: slideDown 8s linear infinite;
+            opacity: 0;
+        }
+
+        .news-list li:nth-child(1) { animation-delay: 0s; }
+        .news-list li:nth-child(2) { animation-delay: 2s; }
+        .news-list li:nth-child(3) { animation-delay: 4s; }
+        .news-list li:nth-child(4) { animation-delay: 6s; }
+        .news-list li:nth-child(5) { animation-delay: 8s; }
+
+        .events-list li:nth-child(1) { animation-delay: 0s; }
+        .events-list li:nth-child(2) { animation-delay: 1.6s; }
+        .events-list li:nth-child(3) { animation-delay: 3.2s; }
+        .events-list li:nth-child(4) { animation-delay: 4.8s; }
+        .events-list li:nth-child(5) { animation-delay: 6.4s; }
+
+        @keyframes slideUpDown {
+            0%, 100% { 
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            10%, 90% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            45%, 55% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            0%, 100% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+        }
+
+        @keyframes slideDown {
+            0% {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            10%, 90% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+        }
+
+        .news-section:hover .news-list li,
+        .events-section:hover .events-list li {
+            animation-play-state: paused;
+        }
+
+        /* Campus Life styles with overlays */
+        .campus-life {
+            padding: 3rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .campus-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .campus-image {
+            height: 250px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .campus-image:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+        }
+
+        .campus-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .campus-image:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(0,56,118,0.9), rgba(0,56,118,0.5));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .campus-image:hover .image-overlay {
+            opacity: 1;
+        }
+
+        .overlay-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .overlay-description {
+            color: #f0f0f0;
+            font-size: 1rem;
+            transform: translateY(20px);
+            transition: transform 0.3s ease 0.1s;
+            max-width: 90%;
+            line-height: 1.4;
+        }
+
+        .campus-image:hover .overlay-title,
+        .campus-image:hover .overlay-description {
+            transform: translateY(0);
+        }
+
+        .overlay-icon {
+            font-size: 2rem;
+            color: white;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.3s ease;
+        }
+
+        .campus-image:hover .overlay-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Footer styles */
+        .footer {
+            background: linear-gradient(90deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .social-icons {
+            margin-top: 1.5rem;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-icons img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <!-- Rest of the HTML remains exactly the same as in the original -->
+    <!-- Header with Logo -->
+    <header class="header">
+        <img src="https://th.bing.com/th/id/OIP.IZ5q5zy7spF_rzFGXScc3wAAAA?w=297&h=300&rs=1&pid=ImgDetMain" alt="NITW Logo" class="logo">
+        <h1 class="institute-name">National Institute of Technology, Warangal</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Academics</a></li>
+            <li><a href="#">Admissions</a></li>
+            <li><a href="#">Research</a></li>
+            <li><a href="#">Campus Life</a></li>
+        </ul>
+    </nav>
+
+    <!-- Announcements -->
+    <div class="announcements">
+        <div class="ticker">
+            🔴 Admissions Open for 2025-26 Academic Year | 
+            📢 Recent NIRF Ranking: Top 10 Engineering Institutes | 
+            🎓 Upcoming Convocation Ceremony on March 15th | 
+            📋 New Research Grants Announced
+        </div>
+    </div>
+
+    <!-- Image Slider -->
+    <div class="slider">
+        <div class="slides">
+            <div class="slide active">
+                <img src="https://nitw.ac.in/api/static/files/Innothon_2025-2-14-19-9-35.jpg" alt="Campus View 1">
+            </div>
+            <div class="slide">
+                <img src="https://nitw.ac.in/api/static/files/ENVIRONMENTAL_SUSTAINABILITY_2025-2-12-10-34-44.jpg" alt="Campus View 2">
+            </div>
+            <div class="slide">
+                <img src="https://nitw.ac.in/api/static/files/Workshop_on_NEP_Implementation_in_HEIs_and_Way_Forward_-V2_2025-2-4-15-0-24.jpg" alt="Campus View 3">
+            </div>
+            <div class="slide">
+                <img src="https://nitw.ac.in/api/static/files/Alumni_Association%E2%80%99s_Meet_2025-1-8-15-56-40.jpg" alt="Campus View 4">
+            </div>
+        </div>
+        
+        <div class="slider-nav">
+            <button class="prev-btn" onclick="prevSlide()">❮</button>
+            <button class="next-btn" onclick="nextSlide()">❯</button>
+        </div>
+        
+        <div class="slider-dots">
+            <button class="dot active" onclick="goToSlide(0)"></button>
+            <button class="dot" onclick="goToSlide(1)"></button>
+            <button class="dot" onclick="goToSlide(2)"></button>
+            <button class="dot" onclick="goToSlide(3)"></button>
+        </div>
+    </div>
+
+    <!-- News & Events -->
+    <div class="news-events">
+        <div class="news-section">
+            <h2 class="section-title">Latest News</h2>
+            <ul class="news-list">
+                <li>NITW Researchers Develop New Green Technology</li>
+                <li>International Conference on Emerging Technologies Announced</li>
+                <li>MoU Signed with Leading Industry Partners</li>
+                <li>Students Win National Level Technical Competition</li>
+                <li>New Center of Excellence Inaugurated</li>
+            </ul>
+        </div>
+        <div class="events-section">
+            <h2 class="section-title">Upcoming Events</h2>
+            <ul class="events-list">
+                <li>Feb 20: Technical Symposium 2025</li>
+                <li>Feb 25: Industry Expert Guest Lecture</li>
+                <li>Mar 05: Annual Sports Meet</li>
+                <li>Mar 15: Cultural Festival</li>
+                <li>Mar 20: Alumni Meet 2025</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Campus Life -->
+    <div class="campus-life">
+        <h2 class="section-title">Campus Life</h2>
+        <div class="campus-images">
+            <div class="campus-image">
+                <img src="https://nitw.ac.in/api/static/files/Bathukamma_2024-10-9-11-20-42.jpg" alt="Academic Block">
+            </div>
+            <div class="campus-image">
+                <img src="https://nitw.ac.in/api/static/files/Ek_Ped_Maa_Ke_Nam2_2024-9-20-18-50-30.jpg" alt="Library">
+            </div>
+            <div class="campus-image">
+                <img src="https://nitw.ac.in/api/static/files/Swachhata_Campaign2_2024-9-20-18-51-30.jpg" alt="Sports Complex">
+            </div>
+            <div class="campus-image">
+                <img src="https://nitw.ac.in/api/static/files/Ek_Ped_Maa_Ke_Nam_2024-9-20-18-48-19.jpg" alt="Hostel">
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="footer">
+        <p>&copy; 2025 National Institute of Technology, Warangal. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.linkedin.com" target="_blank">
+                <img src="https://th.bing.com/th/id/OIP.ozDiSGJlUqI6815cRlJiNAHaHa?rs=1&pid=ImgDetMain" alt="LinkedIn">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img src="https://th.bing.com/th/id/OIP.xmo9SYOv_gW3ij1PetPBvwHaHa?rs=1&pid=ImgDetMain" alt="Instagram">
+            </a>
+            <a href="https://www.youtube.com" target="_blank">
+                <img src="https://th.bing.com/th/id/OIP.3zPBemAaooD0xS6nuMpzoAHaHa?rs=1&pid=ImgDetMain" alt="YouTube">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.dot');
+        
+        function showSlide(n) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            dots.forEach(dot => dot.classList.remove('active'));
+            
+            currentSlide = (n + slides.length) % slides.length;
+            
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+        }
+        
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+        
+        function prevSlide() {
+            showSlide(currentSlide - 1);
+        }
+        
+        function goToSlide(n) {
+            showSlide(n);
+        }
+        
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
