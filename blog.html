@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MY BLOG</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Monomakh&family=Playwrite+VN+Guides&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@700&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <style>
+
+        html {
+            scroll-behavior: smooth;
+        }
+        .monomakh-regular {
+  font-family: "Monomakh", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: #FBF5DD;
+        }
+        .header {
+            background-color: #A6CDC6;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav a {
+            color: #16404D;
+            text-decoration: none;
+            position: relative;
+            padding: 0.5rem;
+            transition: color 0.3s;
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #16404D;
+            transition: width 0.3s;
+        }
+
+        .nav a:hover::after {
+            width: 100%;
+        }
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://th.bing.com/th/id/OIP.DVl96hzh4qBCnsnBrqOCfAHaE8?w=1000&h=667&rs=1&pid=ImgDetMain');
+            background-size: cover;
+            color: white;
+        }
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .cta-button {
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            background-color: #16404D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, transparent 70%);
+            transform: scale(0);
+            opacity: 0;
+            transition: transform 0.5s, opacity 0.3s;
+        }
+
+        .cta-button:active::after {
+            transform: scale(2);
+            opacity: 1;
+        }
+
+        .blog-section {
+            padding: 2rem;
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .blog-card {
+            width: 300px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            font-family: "Playwrite VN Guides", serif;
+  font-weight: 400;
+  font-style: normal;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .blog-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .blog-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .categories {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .category-button {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: none;
+            background-color: #A6CDC6;
+            cursor: pointer;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .category-button:hover {
+            transform: scale(1.1);
+            background-color: #16404D;
+        }
+
+ 
+        .about-section, .contact-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background-color: white;
+        }
+
+        .about-section {
+            background-color: #f5f5f5;
+        }
+
+        .contact-section {
+            background-color: #A6CDC6;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            color: #16404D;
+            margin-bottom: 2rem;
+        }
+
+        .contact-email {
+            font-size: 1.2rem;
+            color: #16404D;
+            text-decoration: none;
+            border-bottom: 2px solid #16404D;
+            padding-bottom: 0.2rem;
+        }
+
+        .contact-email:hover {
+            color: #A6CDC6;
+            border-bottom-color: #A6CDC6;
+        }
+
+        .footer {
+            background-color: #16404D;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            transition: transform 0.3s;
+        }
+
+        .social-icon:hover {
+            animation: bounce 0.5s;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .subscribe {
+            padding: 2rem;
+            text-align: center;
+            background-color: #f5f5f5;
+        }
+
+        .subscribe input {
+            padding: 0.5rem 1rem;
+            margin: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .subscribe button {
+            padding: 0.5rem 2rem;
+            background-color: #16404D;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: box-shadow 0.3s;
+        }
+
+        .subscribe button:hover {
+            box-shadow: 0 0 20px rgba(22, 64, 77, 0.5);
+        }
+    </style>
+</head>
+<body>
+    <header class="header" id="home">
+        <nav class="nav">
+            <a href="#home">Home</a>
+            <a href="#blog">Blog</a>
+            <a href="#categories">Categories</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Welcome to My Blog</h1>
+        <button class="cta-button">Get Started</button>
+    </section>
+
+    <section id="blog" class="blog-section">
+       
+        <div class="blog-card">
+            <img src="https://th.bing.com/th/id/OIP.LzGVi-JlT4ejemGEo_8XqQAAAA?rs=1&pid=ImgDetMain" alt="Blog 1">
+            <div style="padding: 1rem;">
+                <h3 class="monomakh-regular">How Codeforces Can Boost Your DSA Skills</h3>
+                <p>
+                    Codeforces is a fantastic platform for improving Data Structures and Algorithms (DSA) skills. It offers a range of problems covering various DSA topics. Regular contests help enhance problem-solving speed and accuracy. Detailed editorials explain different approaches, broadening your toolkit. The vibrant community encourages knowledge exchange. Virtual contests mimic real-time conditions, preparing you for competitions and interviews. The rating system motivates continuous improvement. Persistent practice on Codeforces transforms your DSA proficiency, making it an invaluable resource for all programmers. Dive into Codeforces and watch your DSA skills soar.</p>
+            </div>
+        </div>
+        <div class="blog-card">
+            <img src="https://th.bing.com/th/id/OIP.2vMsRhdFGDrvuFjzcQf8nAHaHa?rs=1&pid=ImgDetMain" alt="Blog 2">
+            <div style="padding: 1rem;">
+                <h3 class="monomakh-regular">Why MDN Docs is a Dev's Best Friend</h3>
+                <p>MDN (Mozilla Developer Network) Docs is an essential resource for developers. It covers a wide range of web technologies like HTML, CSS, and JavaScript. The clear, concise content makes complex concepts easy to understand. Tutorials cater to both beginners and experienced developers. MDN Docs is regularly updated with the latest information. Interactive examples and detailed explanations bridge theory and practical application. Community contributions keep the content relevant. Whether you're debugging, learning a new framework, or brushing up on skills, MDN Docs is your reliable go-to for information.</p>
+            </div>
+        </div>
+        <div class="blog-card">
+            <img src="https://th.bing.com/th/id/OIP.5M3tpXSXKmUr9om51iNHrQHaEK?rs=1&pid=ImgDetMain" alt="Blog 3">
+            <div style="padding: 1rem;">
+                <h3 class="monomakh-regular">How Machine Learning Can Revolutionize AI</h3>
+                <p>Machine Learning (ML) is transforming AI by enabling systems to learn from data and make decisions. Applications range from healthcare to entertainment. ML algorithms improve over time, becoming more accurate and efficient. In AI, ML creates intelligent systems that understand language, recognize images, and predict trends. ML's flexibility makes it ideal for solving complex problems. Leveraging ML, AI systems achieve unprecedented sophistication, paving the way for innovations. The future of AI, powered by ML, promises advancements that will shape our world for generations.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="categories" class="categories">
+        <button class="category-button"><a href="#tech">Tech</a></button>
+        <button class="category-button"><a href="#life">Life</a></button>
+        <button class="category-button"><a href="#food">Food</a></button>
+        <button class="category-button"><a href="#travel">Travel</a></button>
+    </section>
+
+    <section id="about" class="about-section">
+        <h2 class="section-title">About Our Tech Blog</h2>
+        <p>Welcome to our cutting-edge tech blog, where we dive deep into the world of technology, programming, and innovation. Our mission is to provide valuable insights, tutorials, and the latest trends in software development, artificial intelligence, and digital transformation. Whether you're a seasoned developer or just starting your tech journey, our content is crafted to inspire, educate, and keep you updated with the rapidly evolving tech landscape.</p>
+        <p>We cover everything from practical coding tutorials and best practices to emerging technologies and industry insights. Our team of experienced tech enthusiasts is dedicated to delivering high-quality, actionable content that helps you stay ahead in the digital world.</p>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <h2 class="section-title">Get in Touch</h2>
+        <p>Have questions or suggestions? We'd love to hear from you!</p>
+        <a href="mailto:your.email@example.com" class="contact-email">hs24csb0b26@student.nitw.ac.in</a>
+    </section>
+
+    <section class="subscribe">
+        <h2>Subscribe to Our Newsletter</h2>
+        <form>
+            <input type="text" placeholder="Name">
+            <input type="email" placeholder="Email">
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <footer class="footer">
+        <div class="social-icons">
+           <a href="https://www.facebook.com/" ><img src="https://pngimg.com/uploads/facebook_logos/facebook_logos_PNG19759.png" alt="Facebook" class="social-icon"></a>
+           <a href="https://www.x.com/" > <img src="https://th.bing.com/th/id/OIP.OiRP0Wt_nlImTXz5w45aRQHaHa?w=200&h=200&c=7&r=0&o=5&dpr=1.5&pid=1.7" alt="Twitter" class="social-icon"></a>
+           <a href="https://www.instagram.com/" >  <img src="https://th.bing.com/th/id/OIP.xmo9SYOv_gW3ij1PetPBvwHaHa?rs=1&pid=ImgDetMain" alt="Instagram" class="social-icon"></a>
+        </div>
+        <p>&copy; 2024 My Blog. All rights reserved.</p>
+    </footer>
+</body>
+</html>
