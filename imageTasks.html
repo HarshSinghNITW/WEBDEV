@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amber Fort - Jaipur</title>
+    <style>
+
+        :root {
+            --primary-color: #ff9999;
+            --secondary-color: #ffcccc;
+            --text-color: #ff4d4d;
+            --background-color: #fff5f5;
+            --padding-standard: 20px;
+            --border-radius: 10px;
+            --transition-time: 0.3s;
+            --shadow: 0 0 10px rgba(0,0,0,0.1);
+            --image-filter: contrast(120%) brightness(105%) saturate(130%);
+        }
+   
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+        }
+        
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: var(--padding-standard);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            background-color: var(--secondary-color);
+            padding: calc(var(--padding-standard) * 0.75);
+            text-align: center;
+            position: sticky;
+            top: 76px;
+            z-index: 99;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 5px 10px;
+            transition: all var(--transition-time) ease;
+        }
+        
+        nav a:hover {
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+        }
+        
+    
+        .site-content {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: var(--padding-standard);
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .image-container {
+            position: sticky;
+            top: 140px;
+            width: 400px;
+            height: 400px;
+            flex-shrink: 0;
+        }
+        
+        .site-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+       
+            mask-image: radial-gradient(circle at center, black 50%, transparent 80%);
+            -webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 80%);
+    
+            filter: var(--image-filter);
+            transition: transform var(--transition-time) ease;
+        }
+        
+        .site-image:hover {
+            transform: scale(1.05);
+        }
+  
+        .content-wrapper {
+            background-color: white;
+            padding: var(--padding-standard);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        h2 {
+            color: var(--text-color);
+        }
+        
+        p {
+            line-height: 1.6;
+            color: #666;
+        }
+        
+        .history-section, .kings-section {
+            margin-top: 30px;
+            padding-top: var(--padding-standard);
+            border-top: 2px solid var(--secondary-color);
+        }
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+            padding-left: 50px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 10px;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -44px;
+            top: 6px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            border: 3px solid white;
+        }
+        
+        .timeline-year {
+            font-weight: bold;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .site-content {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .image-container {
+                position: relative;
+                top: 0;
+                width: 100%;
+                max-width: 400px;
+                margin-bottom: 20px;
+            }
+            
+            nav {
+                top: 0;
+            }
+            
+            .timeline {
+                padding-left: 30px;
+            }
+            
+            .timeline-item::before {
+                left: -24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Amber Fort</h1>
+    </header>
+    
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="heritage.html">Heritage</a>
+        <a href="booking.html">Hotel Booking</a>
+        <a href="gallery.html">Gallery</a>
+    </nav>
+    
+    <div class="site-content">
+        <div class="image-container">
+            <img class="site-image" src="https://thumbs.dreamstime.com/z/beautiful-view-amber-fort-jaipur-rajasthan-india-garden-maota-lake-amber-fort-jaipur-india-ai-generated-beautiful-301760730.jpg" alt="Amber Fort">
+        </div>
+        
+        <div class="content-wrapper">
+            <h2>About Amber Fort</h2>
+            <p>The Amber Fort, also known as Amer Fort, is one of the most famous forts of Rajasthan. Built in 1592 by Raja Man Singh I, it serves as the main tourist attraction in Jaipur. The fort is known for its artistic Hindu style elements and its large ramparts, series of gates, and cobbled paths.</p>
+            
+            <div class="history-section">
+                <h2>History</h2>
+                <p>Built in red sandstone and marble, the attractive, opulent palace is laid out on four levels, each with a courtyard. It consists of the Diwan-e-Aam (Hall of Public Audience), Diwan-e-Khas (Hall of Private Audience), Sheesh Mahal (Mirror Palace), and Sukh Niwas.</p>
+                
+                <p>The fort was built with high-quality materials from many places. Marble was brought from Makrana, Rajasthan. The palace contains stunning pieces of mirrored glass imported from Belgium. Gardens were based upon the layout of the Mughal Gardens.</p>
+                
+                <p>During its peak, the palace was defended by the huge walls and series of gates and paths. The fort and its palace complex continue to stand as a proud reminder of the city's rich history and cultural heritage.</p>
+            </div>
+            
+            <div class="kings-section">
+                <h2>The Kings of Amber Fort</h2>
+                <p>The Amber Fort was the seat of power for the Kachwaha Rajput clan. Several generations of rulers contributed to the fort's construction, expansion, and cultural significance. Here's a timeline of some of the most influential kings:</p>
+                
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-year">1550-1614: Raja Man Singh I</div>
+                        <p>The primary architect of Amber Fort, Man Singh I was one of Akbar's most trusted generals. He began construction of the fort in 1592 and established the initial structure that would later be expanded by his descendants. His military prowess helped expand Rajput influence throughout Northern India.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1614-1621: Raja Bhau Singh</div>
+                        <p>Son of Man Singh I, he continued his father's legacy but had a relatively short reign. He maintained good relations with the Mughal Emperor Jahangir and focused on administrative reforms within his kingdom.</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1621-1667: Raja Jai Singh I</div>
+                        <p>Known as 'Mirza Raja', Jai Singh I was one of the most prominent Rajput rulers who served under four successive Mughal emperors. He expanded the fort significantly and added several impressive structures including the Sheesh Mahal (Palace of Mirrors).</p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-year">1699-1743: Raja Jai Singh II</div>
+                        <p>The founder of Jaipur city, Raja Jai Singh II (also known as Sawai Jai Singh) was a renowned astronomer, mathematician, and urban planner. Though he moved the capital from Amber to Jaipur in 1727, he continued to maintain and enhance Amber Fort. He built the famous Jantar Mantar observatories in multiple cities including Jaipur.</p>
+                    </div>
+                </div>
+                
+                <p>Each king contributed unique elements to the fort, reflecting their personal tastes, political alliances, and the artistic influences of their time. The fort's architecture shows a fascinating blend of Rajput and Mughal styles, demonstrating the synthesis of cultures that characterized this period in Indian history.</p>
+                
+                <p>The royal family continued to use parts of Amber Fort for ceremonial purposes even after moving the capital to Jaipur, maintaining their connection to this ancestral seat of power. Today, visitors can see the throne room, royal apartments, and audience halls where these kings once ruled their kingdom.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
