@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tech Haven - Product Catalog</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body{
+        background-image:linear-gradient(to bottom, lightyellow,lightblue);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="main-header" style="border-radius: 10px;">
+            <div class="logo">
+                <h1>Tech Haven</h1>
+                <p>Your Ultimate Tech Marketplace</p>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Products</a></li>
+                    <li><a href="#about-footer">About</a></li> 
+                    <li><a href="#contact-footer">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="cart-summary">
+                <button id="view-cart-btn" class="cart-button">
+                    <span class="cart-icon">🛒</span>
+                    <span id="cart-count" class="cart-count">0</span>
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <section class="product-section">
+                <h2 class="section-title">Our Products</h2>
+                <div id="product-list" class="product-grid">
+ 
+                </div>
+            </section>
+
+            <div id="cart-section" class="cart-modal hidden">
+                <div class="cart-content">
+                    <div class="cart-header">
+                        <h2>Your Shopping Cart</h2>
+                        <button id="close-cart-btn" class="close-btn">&times;</button>
+                    </div>
+                    <div id="cart-items" class="cart-items">
+                
+                    </div>
+                    <div id="cart-total" class="cart-footer">
+                        <div class="total-container">
+                            <span>Total:</span>
+                            <span id="total-price" class="total-price">$0.00</span>
+                        </div>
+                        <button id="checkout-btn" class="checkout-btn">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="main-footer" style="background: linear-gradient(135deg, #2c3e50, #34495e); color: white; padding: 40px 0 20px; margin-top: 30px;">
+            <div class="footer-content" style="display: flex; justify-content: space-between; padding: 0 15px;">
+                <div class="footer-section" style="flex: 1; margin: 0 15px;">
+                    <h3 style="margin-bottom: 15px;">Tech Haven</h3>
+                    <p style="font-size: 1rem; color: #bdc3c7;">Delivering cutting-edge technology to your doorstep.</p>
+                </div>
+                <div class="footer-section" style="flex: 1; margin: 0 15px;">
+                    <h4 style="margin-bottom: 15px;">Quick Links</h4>
+                    <ul style="list-style: none; padding: 0;">
+                        <li><a href="#" style="color: #bdc3c7; text-decoration: none; transition: color 0.3s ease;">Home</a></li>
+                        <li><a href="#" style="color: #bdc3c7; text-decoration: none; transition: color 0.3s ease;">Products</a></li>
+                        <li><a href="#" style="color: #bdc3c7; text-decoration: none; transition: color 0.3s ease;">About Us</a></li>
+                    </ul>
+                </div>
+                <div id="about-footer" class="footer-section" style="flex: 1; margin: 0 15px;">
+                    <h4 style="margin-bottom: 15px;">About Us</h4>
+                    <p style="font-size: 1rem; color: #bdc3c7;">Learn more about Tech Haven.</p>
+                </div>
+                <div id="contact-footer" class="footer-section" style="flex: 1; margin: 0 15px;">
+                    <h4 style="margin-bottom: 15px;">Contact Us</h4>
+                    <p style="font-size: 1rem; color: #bdc3c7;">Email: support@techhaven.com</p>
+                    <p style="font-size: 1rem; color: #bdc3c7;">Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="copyright" style="text-align: center; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); margin-top: 20px;">
+                © 2024 Tech Haven. All Rights Reserved.
+            </div>
+        </footer>
+        
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
