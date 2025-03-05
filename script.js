@@ -56,6 +56,14 @@ class Cart {
         this.viewCartBtn.addEventListener('click', () => this.toggleCart());
         this.checkoutBtn.addEventListener('click', () => this.checkout());
         this.closeCartBtn.addEventListener('click', () => this.toggleCart());
+
+        // Add event delegation for remove buttons
+        this.cartItemsContainer.addEventListener('click', (e) => {
+            if (e.target.classList.contains('remove-item')) {
+                const productId = parseInt(e.target.dataset.productId);
+                this.removeItem(productId);
+            }
+        });
     }
 
     addItem(product) {
@@ -98,13 +106,6 @@ class Cart {
         this.totalPriceElement.textContent = totalPrice.toFixed(2);
         this.cartCountElement.textContent = Array.from(this.items.values())
             .reduce((total, item) => total + item.quantity, 0);
-
-        this.cartItemsContainer.querySelectorAll('.remove-item').forEach(button => {
-            button.addEventListener('click', (e) => {
-                const productId = e.target.dataset.productId;
-                this.removeItem(productId);
-            });
-        });
     }
 
     toggleCart() {
