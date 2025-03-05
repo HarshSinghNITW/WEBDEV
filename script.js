@@ -57,7 +57,7 @@ class Cart {
         this.checkoutBtn.addEventListener('click', () => this.checkout());
         this.closeCartBtn.addEventListener('click', () => this.toggleCart());
 
-        // Add event delegation for remove buttons
+        
         this.cartItemsContainer.addEventListener('click', (e) => {
             if (e.target.classList.contains('remove-item')) {
                 const productId = parseInt(e.target.dataset.productId);
