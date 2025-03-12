@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&display=swap" rel="stylesheet">
+    <title>Theme Toggle & Countdown Timer</title>
+    <style>
+        :root {
+            background-color: rgb(255, 254, 168);
+            --text-color: rgb(248, 187, 32);
+            --card-bg: #fff;
+            --button-bg: #4361ee;
+            --button-text: #fff;
+            --button-hover: #3a56d4;
+            --timer-green: #4caf50;
+            --timer-yellow: #ffeb3b;
+            --timer-red: #f44336;
+        }
+
+        .dark-theme {
+            --background-color: #121212;
+            --text-color: #e0e0e0;
+            --card-bg: #1e1e1e;
+            --button-bg: #bb86fc;
+            --button-text: #121212;
+            --button-hover: #a06cd5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: "Big Shoulders", sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .card {
+            border: 10px solid rgb(0, 140, 255);
+            background-color: var(--card-bg);
+    margin:10px;
+    border-radius: 50px;;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            text-align: center;
+        }
+
+        button {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s;
+            margin: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            background-color: var(--button-hover);
+            transform: scale(1.3);
+            border-radius: 10px;
+        }
+
+        .toggle-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 60px;
+            height: 30px;
+            background-color: #ccc;
+            border-radius: 30px;
+            cursor: pointer;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            background-color: white;
+            top: 2px;
+            left: 2px;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch.active {
+            background-color: var(--button-bg);
+        }
+
+        .toggle-switch.active::after {
+            left: 32px;
+        }
+
+        .toggle-label {
+            font-weight: 600;
+        }
+
+        .timer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .timer-display {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin: 1rem 0;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            background-color: var(--timer-green);
+            color: #fff;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .timer-input {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+        }
+
+        input {
+            padding: 0.75rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            font-size: 1rem;
+            width: 100px;
+            text-align: center;
+        }
+
+        .timer-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            h2 {
+                font-size: 1.2rem;
+            }
+
+            .timer-display {
+                font-size: 2.5rem;
+            }
+        }
+
+        .list-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .list-input {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .list-input input {
+            flex-grow: 1;
+            width: auto;
+        }
+
+        .list-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .list-items {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 1rem;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .list-items li {
+            padding: 0.5rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            list-style-type: none;
+        }
+
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .table-input-row {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .table-input-row input {
+            flex: 1;
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .gallery-thumbnails {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 100;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Theme Toggle & Countdown Timer</h1>
+
+        <div class="card">
+            <h2>Theme Toggle</h2>
+            <div class="toggle-container">
+                <span class="toggle-label">Light</span>
+                <div class="toggle-switch" id="themeToggle"></div>
+                <span class="toggle-label">Dark</span>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Countdown Timer</h2>
+            <div class="timer-container">
+                <div class="timer-input">
+                    <input type="number" id="timerInput" min="1" placeholder="Seconds" value="15">
+                </div>
+                <div class="timer-display" id="timerDisplay">00:00</div>
+                <div class="timer-buttons">
+                    <button id="startBtn">Start</button>
+                    <button id="pauseBtn" disabled>Pause</button>
+                    <button id="resumeBtn" disabled>Resume</button>
+                    <button id="resetBtn">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" style="margin:10px;">
+        <h2>List Operations</h2>
+        <div class="list-container">
+            <div class="list-input">
+                <input type="text" id="listItemInput" placeholder="Add item to list">
+                <button id="addItemBtn">Add</button>
+            </div>
+            <div class="list-buttons">
+                <button id="sortBtn">Sort</button>
+                <button id="removeDuplicatesBtn">Remove Duplicates</button>
+                <button id="reverseBtn">Reverse</button>
+            </div>
+            <ul class="list-items" id="itemsList"></ul>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Dynamic Table</h2>
+        <div class="table-container">
+            <div class="table-input-row">
+                <input type="text" id="nameInput" placeholder="Name">
+                <input type="text" id="emailInput" placeholder="Email">
+                <input type="text" id="phoneInput" placeholder="Phone">
+                <button id="addRowBtn">Add Row</button>
+            </div>
+            <table id="dataTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Image Gallery</h2>
+        <div class="gallery-container">
+            <div class="gallery-thumbnails" id="thumbnailsContainer">
+                <img src="https://wonderfulengineering.com/wp-content/uploads/2020/11/10-best-Smart-Watches-Under-50-3.jpg" alt="Image 1" class="thumbnail" data-full="https://wonderfulengineering.com/wp-content/uploads/2020/11/10-best-Smart-Watches-Under-50-3.jpg">
+                <img src="https://m.media-amazon.com/images/I/61wo5E8QmPL._AC_.jpg" alt="Image 2" class="thumbnail" data-full="https://m.media-amazon.com/images/I/61wo5E8QmPL._AC_.jpg">
+                <img src="https://www.bhphotovideo.com/images/images1500x1500/polar_90064907_a370_fitness_tracker_medium_large_1340414.jpg" alt="Image 3" class="thumbnail" data-full="https://www.bhphotovideo.com/images/images1500x1500/polar_90064907_a370_fitness_tracker_medium_large_1340414.jpg">
+                <img src="https://th.bing.com/th/id/OIP.C12s3armk2TpmvW8kjdvAgHaHa?rs=1&pid=ImgDetMain" alt="Image 4" class="thumbnail" data-full="https://th.bing.com/th/id/OIP.C12s3armk2TpmvW8kjdvAgHaHa?rs=1&pid=ImgDetMain">
+            </div>
+        </div>
+    </div>
+    <div id="imageModal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="fullSizeImage">
+    </div>
+    <script>
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        if (localStorage.getItem('theme') === 'dark') {
+            body.classList.add('dark-theme');
+            themeToggle.classList.add('active');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-theme');
+            themeToggle.classList.toggle('active');
+            
+            if (body.classList.contains('dark-theme')) {
+                localStorage.setItem('theme', 'dark');
+            } else {
+                localStorage.setItem('theme', 'light');
+            }
+        });
+
+        const timerInput = document.getElementById('timerInput');
+        const timerDisplay = document.getElementById('timerDisplay');
+        const startBtn = document.getElementById('startBtn');
+        const pauseBtn = document.getElementById('pauseBtn');
+        const resumeBtn = document.getElementById('resumeBtn');
+        const resetBtn = document.getElementById('resetBtn');
+
+        let countdown;
+        let timeLeft = 0;
+        let isRunning = false;
+        let isPaused = false;
+
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60).toString().padStart(2, '0');
+            const secs = (seconds % 60).toString().padStart(2, '0');
+            return `${mins}:${secs}`;
+        }
+
+        function updateTimer() {
+            timerDisplay.textContent = formatTime(timeLeft);
+            
+            if (timeLeft > 10) {
+                timerDisplay.style.backgroundColor = 'var(--timer-green)';
+            } else if (timeLeft >= 5) {
+                timerDisplay.style.backgroundColor = 'var(--timer-yellow)';
+                timerDisplay.style.color = '#333';
+            } else {
+                timerDisplay.style.backgroundColor = 'var(--timer-red)';
+                timerDisplay.style.color = '#fff';
+            }
+        }
+
+        function startTimer() {
+            if (isRunning) return;
+            
+            const inputSeconds = parseInt(timerInput.value);
+            if (isNaN(inputSeconds) || inputSeconds <= 0) return;
+            
+            timeLeft = inputSeconds;
+            isRunning = true;
+            updateTimer();
+            countdown = setInterval(() => {
+                timeLeft--;
+                updateTimer();
+                if (timeLeft <= 0) {
+                    clearInterval(countdown);
+                    isRunning = false;
+                    alert("Time's up!");
+                }
+            }, 1000);
+            startBtn.disabled = true;
+            pauseBtn.disabled = false;
+            resumeBtn.disabled = true;
+            resetBtn.disabled = false;
+        }
+
+        function pauseTimer() {
+            clearInterval(countdown);
+            isPaused = true;
+            startBtn.disabled = true;
+            pauseBtn.disabled = true;
+            resumeBtn.disabled = false;
+        }
+
+        function resumeTimer() {
+    if (!isPaused) return;
+    
+    isPaused = false;
+    countdown = setInterval(() => {
+        timeLeft--;
+        updateTimer();
+        if (timeLeft <= 0) {
+            clearInterval(countdown);
+            isRunning = false;
+            alert("Time's up!");
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+            resumeBtn.disabled = true;
+        }
+    }, 1000);
+    
+    startBtn.disabled = true;
+    pauseBtn.disabled = false;
+    resumeBtn.disabled = true;
+}
+
+        function resetTimer() {
+            clearInterval(countdown);
+            isRunning = false;
+            isPaused = false;
+            timeLeft = 0;
+            updateTimer();
+            startBtn.disabled = false;
+            pauseBtn.disabled = true;
+            resumeBtn.disabled = true;
+            resetBtn.disabled = true;
+        }
+
+        startBtn.addEventListener('click', startTimer);
+        pauseBtn.addEventListener('click', pauseTimer);
+        resumeBtn.addEventListener('click', resumeTimer);
+        resetBtn.addEventListener('click', resetTimer);
+
+        const addItemBtn = document.getElementById('addItemBtn');
+        const listItemInput = document.getElementById('listItemInput');
+        const itemsList = document.getElementById('itemsList');
+        const sortBtn = document.getElementById('sortBtn');
+        const removeDuplicatesBtn = document.getElementById('removeDuplicatesBtn');
+        const reverseBtn = document.getElementById('reverseBtn');
+
+        function addItem() {
+            const item = listItemInput.value.trim();
+            if (item) {
+                const li = document.createElement('li');
+                li.textContent = item;
+                itemsList.appendChild(li);
+                listItemInput.value = '';
+            }
+        }
+
+        function sortList() {
+            const items = [...itemsList.children];
+            items.sort((a, b) => a.textContent.localeCompare(b.textContent));
+            itemsList.innerHTML = '';
+            items.forEach(item => itemsList.appendChild(item));
+        }
+
+        function removeDuplicates() {
+            const uniqueItems = [];
+            [...itemsList.children].forEach(item => {
+                if (!uniqueItems.includes(item.textContent)) {
+                    uniqueItems.push(item.textContent);
+                }
+            });
+            itemsList.innerHTML = '';
+            uniqueItems.forEach(itemText => {
+                const li = document.createElement('li');
+                li.textContent = itemText;
+                itemsList.appendChild(li);
+            });
+        }
+
+        function reverseList() {
+            const items = [...itemsList.children];
+            items.reverse();
+            itemsList.innerHTML = '';
+            items.forEach(item => itemsList.appendChild(item));
+        }
+
+        addItemBtn.addEventListener('click', addItem);
+        sortBtn.addEventListener('click', sortList);
+        removeDuplicatesBtn.addEventListener('click', removeDuplicates);
+        reverseBtn.addEventListener('click', reverseList);
+
+        const tableBody = document.getElementById('tableBody');
+        const addRowBtn = document.getElementById('addRowBtn');
+        const nameInput = document.getElementById('nameInput');
+        const emailInput = document.getElementById('emailInput');
+        const phoneInput = document.getElementById('phoneInput');
+
+        function addRow() {
+            const name = nameInput.value.trim();
+            const email = emailInput.value.trim();
+            const phone = phoneInput.value.trim();
+            
+            if (name && email && phone) {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${name}</td>
+                    <td>${email}</td>
+                    <td>${phone}</td>
+                    <td><button class="deleteRowBtn">Delete</button></td>
+                `;
+                tableBody.appendChild(row);
+                nameInput.value = '';
+                emailInput.value = '';
+                phoneInput.value = '';
+            }
+        }
+
+        tableBody.addEventListener('click', (e) => {
+            if (e.target.classList.contains('deleteRowBtn')) {
+                e.target.closest('tr').remove();
+            }
+        });
+
+        addRowBtn.addEventListener('click', addRow);
+
+        const thumbnails = document.querySelectorAll('.thumbnail');
+        const modal = document.getElementById('imageModal');
+        const fullSizeImage = document.getElementById('fullSizeImage');
+        const closeModal = document.querySelector('.close-modal');
+
+        thumbnails.forEach(thumbnail => {
+            thumbnail.addEventListener('click', () => {
+                const fullImageUrl = thumbnail.getAttribute('data-full');
+                fullSizeImage.src = fullImageUrl;
+                modal.style.display = 'flex';
+            });
+        });
+
+        closeModal.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+    </script>
+</body>
+</html>
