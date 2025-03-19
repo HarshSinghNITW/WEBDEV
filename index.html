@@ -2,93 +2,229 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to Jaipur - The Pink City</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visa Requirements Checker</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #fff5f5;
+            box-sizing: border-box;
         }
-        
-        header {
-            background-color: #ff9999;
-            color: white;
-            text-align: center;
-            padding: 20px;
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
         }
-        
-        .logo {
-            width: 100px;
-            height: 100px;
-            background-color: white;
-            border-radius: 50%;
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
-            color: #ff9999;
         }
-        
-        nav {
-            background-color: #ffcccc;
-            padding: 15px;
-            text-align: center;
-        }
-        
-        nav a {
-            color: #ff4d4d;
-            text-decoration: none;
-            padding: 10px 20px;
-            margin: 0 10px;
-        }
-        
-        nav a:hover {
-            background-color: #ff9999;
-            color: white;
-            border-radius: 5px;
-        }
-        
-        .content {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        
+
         h1 {
-            color: #ff4d4d;
+            text-align: center;
+            margin-bottom: 40px;
+            color: #333;
+            font-size: 2.5em;
         }
-        
-        p {
-            line-height: 1.6;
-            color: #666;
+
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .form-container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1em;
+        }
+
+        button {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background: linear-gradient(135deg, #2980b9 0%, #3498db 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
-    <header>
-        <div class="logo">J</div>
-        <h1>Welcome to Jaipur</h1>
-    </header>
-    
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="heritage.html">Heritage</a>
-        <a href="booking.html">Hotel Booking</a>
-        <a href="gallery.html">Gallery</a>
-    </nav>
-    
-    <div class="content">
-        <h2>About Jaipur</h2>
-        <p>Welcome to Jaipur, the Pink City of India! Known for its rich cultural heritage, magnificent palaces, and vibrant bazaars, Jaipur is a testament to the royal grandeur of Rajasthan.</p>
+    <div class="container">
+        <h1>Visa Requirements Checker</h1>
         
-        <p>Founded in 1727 by Maharaja Sawai Jai Singh II, Jaipur is renowned for its distinctive pink-colored buildings, traditional handicrafts, and delectable cuisine. As the capital of Rajasthan, it seamlessly blends the allure of its ancient history with modern amenities.</p>
+        <div class="form-container">
+            <h2> Instant Visa Check </h2>
+            <div class="form-group">
+                <label for="country1">Select Country:</label>
+                <select id="country1">
+                    <option value="">Select a country</option>
+                    <option value="USA">USA</option>
+                    <option value="Canada">Canada</option>
+                    <option value="India">India</option>
+                    <option value="UK">UK</option>
+                    <option value="Australia">Australia</option>
+                </select>
+            </div>
+            <button onclick="checkVisa1()">Check Visa</button>
+            <div id="result1" class="result"></div>
+        </div>
         
-        <p>Explore our website to discover the magnificent heritage sites, book your stay in our luxurious hotels, and browse through our gallery showcasing the city's most breathtaking views.</p>
+        <div class="form-container">
+            <h2>PHP Visa Check </h2>
+            <form action="process.php" method="POST">
+                <div class="form-group">
+                    <label for="country2">Select Country:</label>
+                    <select name="country" id="country2" required>
+                        <option value="">Select a country</option>
+                        <option value="USA">USA</option>
+                        <option value="Canada">Canada</option>
+                        <option value="India">India</option>
+                        <option value="UK">UK</option>
+                        <option value="Australia">Australia</option>
+                    </select>
+                </div>
+                <button type="submit">Check Visa</button>
+            </form>
+        </div>
+        
+        <div class="form-container">
+            <h2> Visa Application Form</h2>
+            <form id="visaForm" onsubmit="return validateForm(event)">
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="passport">Passport Number:</label>
+                    <input type="text" id="passport" name="passport" placeholder="Enter 8-10 characters" required>
+                </div>
+                <div class="form-group">
+                    <label for="country3">Select Country:</label>
+                    <select id="country3" name="country" required>
+                        <option value="">Select a country</option>
+                        <option value="USA">USA</option>
+                        <option value="Canada">Canada</option>
+                        <option value="India">India</option>
+                        <option value="UK">UK</option>
+                        <option value="Australia">Australia</option>
+                    </select>
+                </div>
+                <button type="submit">Apply for Visa</button>
+            </form>
+            <div id="result3" class="result"></div>
+        </div>
     </div>
+
+    <script>
+        function checkVisa1() {
+            const country = document.getElementById('country1').value;
+            const result = document.getElementById('result1');
+            result.innerHTML = '';
+            result.classList.remove('error', 'success');
+            
+            if (!country) {
+                result.innerHTML = 'Please select a country.';
+                result.classList.add('error');
+                return;
+            }
+            
+            let messages = {
+                'USA': 'Visa required for most applicants.',
+                'Canada': 'Visa required unless you have an eTA.',
+                'India': 'Visa required before travel.',
+                'UK': 'Visa depends on the duration of stay.',
+                'Australia': 'eVisa available for eligible travelers.'
+            };
+            
+            result.innerHTML = messages[country];
+            result.classList.add('success');
+        }
+
+        function validateForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value.trim();
+            const passport = document.getElementById('passport').value.trim();
+            const country = document.getElementById('country3').value;
+            const result = document.getElementById('result3');
+            result.innerHTML = '';
+            result.classList.remove('error', 'success');
+            
+            if (!name || !passport || !country || passport.length < 8 || passport.length > 10) {
+                result.innerHTML = 'Invalid input!';
+                result.classList.add('error');
+                return false;
+            }
+            
+            result.innerHTML = 'Visa application submitted successfully!';
+            result.classList.add('success');
+            document.getElementById('visaForm').reset();
+            return false;
+        }
+    </script>
 </body>
 </html>
