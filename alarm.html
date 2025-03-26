@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Clock with Features</title>
+    <link rel="stylesheet" href="styless.css">
+</head>
+<body>
+    <div class="container">
+        <div class="clock-container">
+            <div class="theme-switcher">
+                <button onclick="setTheme('light')" class="theme-btn">LIGHT</button>
+                <button onclick="setTheme('dark')" class="theme-btn">DARK</button>
+                <button onclick="setTheme('neon')" class="theme-btn">NEON</button>
+                <button onclick="setTheme('custom')" class="theme-btn">CUSTOM</button>
+            </div>
+            
+            <div class="clock">
+                <div class="time">
+                    <span id="hours">00</span>
+                    <span class="colon">:</span>
+                    <span id="minutes">00</span>
+                    <span class="colon">:</span>
+                    <span id="seconds">00</span>
+                </div>
+                <div class="date" id="date">Monday, January 1, 2024</div>
+                <div id="meridiem" class="meridiem">AM</div>
+            </div>
+
+            <div class="alarm-section">
+                <h3 class="section-title">ALARM</h3>
+                <div>
+                    <input type="time" id="alarmTime" class="alarm-input" value="12:00">
+                    <button onclick="setAlarm()" class="btn">SET ALARM</button>
+                    <button onclick="clearAlarms()" class="btn">CLEAR ALL</button>
+                </div>
+                <div id="alarmsList" class="alarms-list"></div>
+            </div>
+
+            <div class="stopwatch-section">
+                <h3 class="section-title">STOPWATCH</h3>
+                <div id="stopwatch">00:00:00</div>
+                <div class="controls">
+                    <button onclick="startStopwatch()" class="btn" id="startStopwatch">START</button>
+                    <button onclick="pauseStopwatch()" class="btn" id="pauseStopwatch">PAUSE</button>
+                    <button onclick="resetStopwatch()" class="btn" id="resetStopwatch">RESET</button>
+                </div>
+            </div>
+
+            <div class="countdown-section">
+                <h3 class="section-title">COUNTDOWN</h3>
+                <div class="countdown-inputs">
+                    <div class="input-group">
+                        <input type="number" id="countdownMinutes" placeholder="Minutes" min="0">
+                    </div>
+                    <div class="input-group">
+                        <input type="number" id="countdownSeconds" placeholder="Seconds" min="0" max="59">
+                    </div>
+                </div>
+                <div class="countdown-display">
+                    <div id="countdown">00:00</div>
+                    <div class="progress-bar">
+                        <div id="progress"></div>
+                    </div>
+                </div>
+                <div class="controls">
+                    <button onclick="startCountdown()" class="btn">START</button>
+                    <button onclick="resetCountdown()" class="btn">RESET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="scriptd.js"></script>
+</body>
+</html> 
