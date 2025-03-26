@@ -104,7 +104,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo '<div class="result error">Invalid request. Please use the form to check visa requirements.</div>';
 }
 
-echo '<a href="index.html" class="back-button">Back to Visa Checker</a>
+echo '<a href="phpval.html" class="back-button">Back to Visa Checker</a>
     </div>
 </body>
 </html>';
